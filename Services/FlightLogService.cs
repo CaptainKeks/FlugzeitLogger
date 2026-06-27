@@ -15,9 +15,16 @@ public class FlightLogService
     public async Task<List<Flight>> LoadAsync()
     {
         if (!File.Exists(_filePath)) return new();
-        await using var stream = File.OpenRead(_filePath);
-        var flights = await JsonSerializer.DeserializeAsync<List<Flight>>(stream, Options);
-        return flights ?? new();
+        try
+        {
+            await using var stream = File.OpenRead(_filePath);
+            var flights = await JsonSerializer.DeserializeAsync<List<Flight>>(stream, Options);
+            return flights ?? new();
+        }
+        catch (Exception e) when (e is JsonException or IOException)
+        {
+            return new(); // beschädigt oder nicht lesbar -> wie leeres Logbuch behandeln
+        }
     }
 
     public async Task SaveAllAsync(List<Flight> flights)

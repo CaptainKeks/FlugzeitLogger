@@ -26,6 +26,7 @@ public partial class MainTabsPage : ContentPage
         _tabButtons = new[] { TabStunden, TabFlug, TabLogbuch, TabEinstellungen };
 
         Pager.ItemsSource = _views;
+        // Nur optische Vorab-Hervorhebung; Lifecycle-Aktivierung erfolgt in OnAppearing.
         UpdateHighlight(StartIndex);
 
         Pager.PositionChanged += OnPositionChanged;

@@ -93,4 +93,12 @@ public class FlightLogServiceTests : IDisposable
         int added = await svc.MergeAsync(new[] { Sample("D-ABCD"), Sample("D-XYZ") });
         Assert.Equal(2, added);
     }
+
+    [Fact]
+    public async Task Load_ReturnsEmpty_WhenFileCorrupt()
+    {
+        await File.WriteAllTextAsync(_path, "{ this is not valid json");
+        var svc = new FlightLogService(_path);
+        Assert.Empty(await svc.LoadAsync());
+    }
 }

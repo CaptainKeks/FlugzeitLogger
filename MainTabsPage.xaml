@@ -20,16 +20,16 @@
         <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*" HeightRequest="56"
               BackgroundColor="#F0F0F0">
             <Button x:Name="TabStunden" Grid.Column="0" Text="Stunden"
-                    FontSize="Caption" BackgroundColor="Transparent" TextColor="Gray"
+                    FontSize="12" BackgroundColor="Transparent" TextColor="Gray"
                     Clicked="OnTabStunden" />
             <Button x:Name="TabFlug" Grid.Column="1" Text="Flug"
-                    FontSize="Caption" BackgroundColor="Transparent" TextColor="Gray"
+                    FontSize="12" BackgroundColor="Transparent" TextColor="Gray"
                     Clicked="OnTabFlug" />
             <Button x:Name="TabLogbuch" Grid.Column="2" Text="Logbuch"
-                    FontSize="Caption" BackgroundColor="Transparent" TextColor="Gray"
+                    FontSize="12" BackgroundColor="Transparent" TextColor="Gray"
                     Clicked="OnTabLogbuch" />
             <Button x:Name="TabEinstellungen" Grid.Column="3" Text="Einstellungen"
-                    FontSize="Caption" BackgroundColor="Transparent" TextColor="Gray"
+                    FontSize="12" BackgroundColor="Transparent" TextColor="Gray"
                     Clicked="OnTabEinstellungen" />
         </Grid>
 
