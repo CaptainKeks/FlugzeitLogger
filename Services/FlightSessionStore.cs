@@ -24,9 +24,9 @@ public class FlightSessionStore
             await using var stream = File.OpenRead(_filePath);
             return await JsonSerializer.DeserializeAsync<Flight>(stream, Options);
         }
-        catch (JsonException)
+        catch (Exception e) when (e is JsonException or IOException)
         {
-            return null; // beschädigte Datei -> wie keine Session behandeln
+            return null; // beschädigt oder nicht lesbar -> wie keine Session behandeln
         }
     }
 
