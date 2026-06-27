@@ -73,6 +73,8 @@ public partial class MainPage : ContentPage
         UpdateTotal();
     }
 
+    private async void OnSwipeLeft(object? sender, SwipedEventArgs e) => await Shell.Current.GoToAsync("//FlightPage");
+
     private void UpdateTotal()
     {
         var total = _entries.Aggregate(TimeSpan.Zero, (sum, x) => sum + x.Time);

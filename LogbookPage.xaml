@@ -5,6 +5,9 @@
              Title="Logbuch">
 
     <Grid Padding="20">
+        <Grid.GestureRecognizers>
+            <SwipeGestureRecognizer Direction="Right" Swiped="OnSwipeRight" />
+        </Grid.GestureRecognizers>
         <CollectionView x:Name="FlightsView" SelectionMode="Single"
                         SelectionChanged="OnFlightSelected">
             <CollectionView.EmptyView>

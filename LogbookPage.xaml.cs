@@ -40,6 +40,8 @@ public partial class LogbookPage : ContentPage
             new Dictionary<string, object> { ["flight"] = row.Flight });
     }
 
+    private async void OnSwipeRight(object? sender, SwipedEventArgs e) => await Shell.Current.GoToAsync("//FlightPage");
+
     private async void OnDeleteClicked(object? sender, EventArgs e)
     {
         if (sender is not Button { CommandParameter: Flight flight }) return;

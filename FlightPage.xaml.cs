@@ -38,7 +38,8 @@ public partial class FlightPage : ContentPage
     {
         var now = DateTime.Now;
         UtcTimeLabel.Text = now.ToUniversalTime().ToString("HH:mm:ss");
-        LocalTimeLabel.Text = "Lokal " + now.ToString("HH:mm:ss");
+        LocalTimeLabel.Text = now.ToString("HH:mm:ss");
+        DateLabel.Text = now.ToString("dd.MM.yyyy");
     }
 
     private void OnRegistrationChanged(object? sender, TextChangedEventArgs e)
@@ -52,6 +53,9 @@ public partial class FlightPage : ContentPage
     private void OnLandingClicked(object? sender, EventArgs e) { _session.Landing(); RefreshState(); }
     private void OnOnBlockClicked(object? sender, EventArgs e) { _session.OnBlock(); RefreshState(); }
     private void OnUndoClicked(object? sender, EventArgs e) { _session.Undo(); RefreshState(); }
+
+    private async void OnSwipeLeft(object? sender, SwipedEventArgs e) => await Shell.Current.GoToAsync("//LogbookPage");
+    private async void OnSwipeRight(object? sender, SwipedEventArgs e) => await Shell.Current.GoToAsync("//MainPage");
 
     private async void OnSaveClicked(object? sender, EventArgs e)
     {
@@ -81,9 +85,6 @@ public partial class FlightPage : ContentPage
         OnBlockButton.IsEnabled = _session.CanOnBlock;
         UndoButton.IsEnabled = _session.CanUndo;
         SaveButton.IsEnabled = _session.CanSave;
-
-        DateLabel.Text = _session.Flight.OffBlock is null
-            ? "—" : _session.Flight.Date.ToString("dd.MM.yyyy");
 
         _legRows.Clear();
         for (int i = 0; i < _session.Legs.Count; i++)

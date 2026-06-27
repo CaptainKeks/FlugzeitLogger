@@ -6,6 +6,11 @@
 
     <Grid RowDefinitions="Auto,Auto,*,Auto" Padding="20" RowSpacing="15">
 
+        <Grid.GestureRecognizers>
+            <SwipeGestureRecognizer Direction="Left" Swiped="OnSwipeLeft" />
+        </Grid.GestureRecognizers>
+
+
         <!-- Eingabe -->
         <VerticalStackLayout Grid.Row="0" Spacing="20">
 
