@@ -20,6 +20,8 @@
     <Compile Include="..\Services\FlightSession.cs" Link="Services\FlightSession.cs" />
     <Compile Include="..\Services\FlightLogService.cs" Link="Services\FlightLogService.cs" />
     <Compile Include="..\Services\FlightSessionStore.cs" Link="Services\FlightSessionStore.cs" />
+    <Compile Include="..\Models\TimeEntry.cs" Link="Models\TimeEntry.cs" />
+    <Compile Include="..\Services\StundenStore.cs" Link="Services\StundenStore.cs" />
   </ItemGroup>
 
 </Project>
