@@ -16,6 +16,7 @@ public partial class StundenView : ContentView, ITabView
 
     public void OnSelected()
     {
+        _clockTimer?.Stop();
         UpdateClock();
         _clockTimer = Dispatcher.CreateTimer();
         _clockTimer.Interval = TimeSpan.FromSeconds(1);
@@ -23,7 +24,11 @@ public partial class StundenView : ContentView, ITabView
         _clockTimer.Start();
     }
 
-    public void OnDeselected() => _clockTimer?.Stop();
+    public void OnDeselected()
+    {
+        _clockTimer?.Stop();
+        _clockTimer = null;
+    }
 
     private void UpdateClock()
     {
