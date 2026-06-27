@@ -22,18 +22,15 @@ public partial class FlightDetailPage : ContentPage, IQueryAttributable
         OffBlockLabel.Text = flight.OffBlock is { } off ? off.ToString("HH:mm:ss") + " UTC" : "—";
         OnBlockLabel.Text = flight.OnBlock is { } on ? on.ToString("HH:mm:ss") + " UTC" : "—";
 
-        LegsStack.Children.Clear();
+        var legLines = new List<string>();
         for (int i = 0; i < flight.Legs.Count; i++)
         {
             var leg = flight.Legs[i];
             string to = leg.Takeoff?.ToString("HH:mm:ss") ?? "—";
             string la = leg.Landing?.ToString("HH:mm:ss") ?? "—";
-            LegsStack.Children.Add(new Label
-            {
-                Text = $"Start {i + 1}: {to}   /   Landung {i + 1}: {la}",
-                FontSize = 18
-            });
+            legLines.Add($"Start {i + 1}: {to}   /   Landung {i + 1}: {la}");
         }
+        BindableLayout.SetItemsSource(LegsStack, legLines);
 
         BlockTimeLabel.Text = FlightMath.FormatDuration(FlightMath.BlockTime(flight));
         FlightTimeLabel.Text = FlightMath.FormatDuration(FlightMath.FlightTime(flight));

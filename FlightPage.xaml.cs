@@ -48,6 +48,8 @@ public partial class FlightPage : ContentPage
         RefreshState();
     }
 
+    private void OnRegistrationCompleted(object? sender, EventArgs e) => RegistrationEntry.Unfocus();
+
     private void OnOffBlockClicked(object? sender, EventArgs e) { _session.OffBlock(); RefreshState(); }
     private void OnStartClicked(object? sender, EventArgs e) { _session.Start(); RefreshState(); }
     private void OnLandingClicked(object? sender, EventArgs e) { _session.Landing(); RefreshState(); }
