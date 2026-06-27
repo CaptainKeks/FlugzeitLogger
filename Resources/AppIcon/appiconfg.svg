@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="456" height="456" viewBox="0 0 456 456" xmlns="http://www.w3.org/2000/svg">
+	<g fill="none" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round">
+		<!-- Zifferblatt -->
+		<circle cx="228" cy="228" r="120" stroke-width="18"/>
+		<!-- Stundenzeiger -->
+		<line x1="228" y1="228" x2="228" y2="168"/>
+		<!-- Minutenzeiger -->
+		<line x1="228" y1="228" x2="280" y2="252"/>
+		<!-- kleine Markierungen oben/unten/links/rechts -->
+		<line x1="228" y1="128" x2="228" y2="142"/>
+		<line x1="228" y1="314" x2="228" y2="328"/>
+		<line x1="128" y1="228" x2="142" y2="228"/>
+		<line x1="314" y1="228" x2="328" y2="228"/>
+	</g>
+	<circle cx="228" cy="228" r="10" fill="#FFFFFF"/>
+</svg>
