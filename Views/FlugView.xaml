@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Uhrzeitrechner.Views.FlugView">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Uhr -->
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                <HorizontalStackLayout Grid.Column="0" Spacing="8" VerticalOptions="Center">
+                    <Label Text="UTC" FontSize="Medium" TextColor="Gray" VerticalOptions="Center" />
+                    <Label x:Name="UtcTimeLabel" Text="--:--:--" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Column="1" Spacing="8" VerticalOptions="Center">
+                    <Label Text="Lokal" FontSize="Medium" TextColor="Gray" VerticalOptions="Center" />
+                    <Label x:Name="LocalTimeLabel" Text="--:--:--" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </Grid>
+
+            <BoxView HeightRequest="1" Color="LightGray" />
+
+            <!-- Flugdaten -->
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10" RowDefinitions="Auto,Auto" RowSpacing="8">
+                <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" Text="Datum:" VerticalOptions="Center" TextColor="Gray" />
+                <Label Grid.Row="0" Grid.Column="1" FontSize="Medium" x:Name="DateLabel" Text="—" VerticalOptions="Center" FontAttributes="Bold" />
+                <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" Text="Flug:" VerticalOptions="Center" TextColor="Gray" />
+                <Entry Grid.Row="1" Grid.Column="1" FontSize="Medium" x:Name="RegistrationEntry" Placeholder="z.B. D-MSSE" TextChanged="OnRegistrationChanged" Completed="OnRegistrationCompleted" />
+            </Grid>
+
+            <!-- Erfassungs-Buttons -->
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="10" RowSpacing="10">
+                <Button Grid.Row="0" Grid.Column="0" x:Name="OffBlockButton" Text="Off-Block" Clicked="OnOffBlockClicked" FontAttributes="Bold" FontSize="Medium" HeightRequest="55" />
+                <Button Grid.Row="1" Grid.Column="0" x:Name="OnBlockButton" Text="On-Block" Clicked="OnOnBlockClicked" FontAttributes="Bold" FontSize="Medium" HeightRequest="55" />
+                <Button Grid.Row="0" Grid.Column="1" x:Name="StartButton" Text="Start" Clicked="OnStartClicked" FontAttributes="Bold" FontSize="Medium" HeightRequest="55" />
+                <Button Grid.Row="1" Grid.Column="1" x:Name="LandingButton" Text="Landung" Clicked="OnLandingClicked" FontAttributes="Bold" FontSize="Medium" HeightRequest="55" />
+            </Grid>
+
+            <Button x:Name="UndoButton" Text="Letzte Erfassung rückgängig" Clicked="OnUndoClicked"
+                    BackgroundColor="Transparent" FontSize="Small" TextColor="Orange"
+                    BorderColor="Orange" BorderWidth="1" />
+
+            <BoxView HeightRequest="1" Color="LightGray" />
+
+            <!-- Ergebnisse -->
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="10" ColumnSpacing="10">
+
+                <Grid Grid.Row="0" Grid.Column="0" ColumnDefinitions="Auto,*" ColumnSpacing="6">
+                    <Label Grid.Column="0" Text="Off-Block" FontSize="Small" TextColor="Gray" VerticalOptions="Center" />
+                    <Label Grid.Column="1" x:Name="OffBlockResultLabel" Text="—" FontSize="Medium" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="1" ColumnDefinitions="Auto,*" ColumnSpacing="6">
+                    <Label Grid.Column="0" Text="Erster Start" FontSize="Small" TextColor="Gray" VerticalOptions="Center" />
+                    <Label Grid.Column="1" x:Name="FirstTakeoffLabel" Text="—" FontSize="Medium" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
+                </Grid>
+
+                <Grid Grid.Row="1" Grid.Column="0" ColumnDefinitions="Auto,*" ColumnSpacing="6">
+                    <Label Grid.Column="0" Text="On-Block" FontSize="Small" TextColor="Gray" VerticalOptions="Center" />
+                    <Label Grid.Column="1" x:Name="OnBlockResultLabel" Text="—" FontSize="Medium" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="1" ColumnDefinitions="Auto,*" ColumnSpacing="6">
+                    <Label Grid.Column="0" Text="Letzte Ldg." FontSize="Small" TextColor="Gray" VerticalOptions="Center" />
+                    <Label Grid.Column="1" x:Name="LastLandingLabel" Text="—" FontSize="Medium" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
+                </Grid>
+
+                <Grid Grid.Row="2" Grid.Column="0" ColumnDefinitions="Auto,*" ColumnSpacing="6">
+                    <Label Grid.Column="0" Text="Blockzeit" FontSize="Small" TextColor="Gray" VerticalOptions="Center" />
+                    <Label Grid.Column="1" x:Name="BlockTimeLabel" Text="—" FontSize="Medium" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="1" ColumnDefinitions="Auto,*" ColumnSpacing="6">
+                    <Label Grid.Column="0" Text="Flugzeit" FontSize="Small" TextColor="Gray" VerticalOptions="Center" />
+                    <Label Grid.Column="1" x:Name="FlightTimeLabel" Text="0:00" FontSize="Medium" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
+                </Grid>
+
+                <Grid Grid.Row="3" Grid.Column="0" ColumnDefinitions="Auto,*" ColumnSpacing="6">
+                    <Label Grid.Column="0" Text="Landungen" FontSize="Small" TextColor="Gray" VerticalOptions="Center" />
+                    <Label Grid.Column="1" x:Name="LandingCountLabel" Text="0" FontSize="Medium" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
+                </Grid>
+
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                <Button Grid.Column="0" x:Name="ResetButton" Text="Zurücksetzen" FontSize="Small" Clicked="OnResetClicked"
+                        BackgroundColor="Transparent" TextColor="Red"
+                        BorderColor="Red" BorderWidth="1" />
+                <Button Grid.Column="1" x:Name="SaveButton" Text="Flug speichern" FontSize="Small" Clicked="OnSaveClicked" />
+            </Grid>
+
+            <BoxView HeightRequest="1" Color="LightGray" />
+
+            <!-- Legs -->
+            <CollectionView x:Name="LegsView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="0,6">
+                            <Label Text="{Binding Display}" FontSize="Small" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>
