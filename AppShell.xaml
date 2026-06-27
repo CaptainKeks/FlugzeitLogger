@@ -6,9 +6,19 @@
     xmlns:local="clr-namespace:Uhrzeitrechner"
     Title="Uhrzeitrechner">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <ShellContent
+            Title="Stunden"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+        <ShellContent
+            Title="Flug"
+            ContentTemplate="{DataTemplate local:FlightPage}"
+            Route="FlightPage" />
+        <ShellContent
+            Title="Logbuch"
+            ContentTemplate="{DataTemplate local:LogbookPage}"
+            Route="LogbookPage" />
+    </TabBar>
 
 </Shell>
