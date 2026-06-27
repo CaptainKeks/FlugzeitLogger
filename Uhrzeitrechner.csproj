@@ -70,4 +70,11 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
 	</ItemGroup>
 
+	<!-- Exclude the Tests sub-project from the MAUI app compile glob -->
+	<ItemGroup>
+		<Compile Remove="Tests\**" />
+		<None Remove="Tests\**" />
+		<EmbeddedResource Remove="Tests\**" />
+	</ItemGroup>
+
 </Project>
