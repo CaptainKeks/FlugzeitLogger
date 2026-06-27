@@ -90,6 +90,19 @@ public partial class FlightPage : ContentPage
         for (int i = 0; i < _session.Legs.Count; i++)
             _legRows.Add(new LegRow(i + 1, _session.Legs[i]));
 
+        // Ergebnisse (ohne Sekunden)
+        OffBlockResultLabel.Text = _session.Flight.OffBlock?.ToString("HH:mm") ?? "—";
+        OnBlockResultLabel.Text = _session.Flight.OnBlock?.ToString("HH:mm") ?? "—";
+
+        FirstTakeoffLabel.Text = _session.Legs.Count > 0
+            ? _session.Legs[0].Takeoff?.ToString("HH:mm") ?? "—"
+            : "—";
+
+        var lastLanding = _session.Legs.LastOrDefault(l => l.Landing is not null)?.Landing;
+        LastLandingLabel.Text = lastLanding?.ToString("HH:mm") ?? "—";
+
+        LandingCountLabel.Text = _session.Legs.Count(l => l.Landing is not null).ToString();
+
         BlockTimeLabel.Text = FlightMath.FormatDuration(FlightMath.BlockTime(_session.Flight));
         FlightTimeLabel.Text = FlightMath.FormatDuration(FlightMath.FlightTime(_session.Flight));
     }
