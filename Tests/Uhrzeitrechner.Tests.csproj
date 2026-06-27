@@ -18,7 +18,7 @@
     <Compile Include="..\Models\Leg.cs" Link="Models\Leg.cs" />
     <Compile Include="..\Services\FlightMath.cs" Link="Services\FlightMath.cs" />
     <Compile Include="..\Services\FlightSession.cs" Link="Services\FlightSession.cs" />
-    <!-- <Compile Include="..\Services\FlightLogService.cs" Link="Services\FlightLogService.cs" /> -->
+    <Compile Include="..\Services\FlightLogService.cs" Link="Services\FlightLogService.cs" />
   </ItemGroup>
 
 </Project>
