@@ -68,7 +68,7 @@ public class FlightSession
     public void Undo()
     {
         if (Flight.OnBlock is not null) { Flight.OnBlock = null; return; }
-        if (OpenLeg is { } open) { Flight.Legs.RemoveAt(Flight.Legs.Count - 1); return; }
+        if (OpenLeg is not null) { Flight.Legs.RemoveAt(Flight.Legs.Count - 1); return; }
         if (Flight.Legs.Count > 0)
         {
             Flight.Legs[^1].Landing = null; // letztes abgeschlossenes Leg -> Landing weg

@@ -34,6 +34,7 @@ public class FlightLogService
     public async Task DeleteAsync(Flight flight)
     {
         var all = await LoadAsync();
+        // Match by composite key (Date + Registration + OffBlock); assumes this combination is effectively unique per user.
         var match = all.FirstOrDefault(f =>
             f.Date == flight.Date &&
             f.Registration == flight.Registration &&

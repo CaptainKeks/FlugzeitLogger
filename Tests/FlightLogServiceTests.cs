@@ -47,6 +47,7 @@ public class FlightLogServiceTests : IDisposable
         Assert.Equal(
             new DateTime(2026, 6, 27, 10, 50, 0, DateTimeKind.Utc),
             loaded[0].Legs[0].Landing);
+        Assert.Equal(DateTimeKind.Utc, loaded[0].Legs[0].Landing!.Value.Kind);
     }
 
     [Fact]
