@@ -6,8 +6,7 @@ namespace Uhrzeitrechner;
 public partial class FlightPage : ContentPage
 {
     private readonly FlightSession _session = new();
-    private readonly FlightLogService _log =
-        new(Path.Combine(FileSystem.AppDataDirectory, "flights.json"));
+    private readonly FlightLogService _log = new(AppPaths.FlightLogPath);
     private readonly ObservableCollection<LegRow> _legRows = new();
     private IDispatcherTimer? _clockTimer;
 
