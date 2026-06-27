@@ -6,8 +6,9 @@ namespace Uhrzeitrechner;
 public partial class FlightPage : ContentPage
 {
     private readonly FlightSession _session = new();
-    private readonly FlightLogService _log =
-        new(Path.Combine(FileSystem.AppDataDirectory, "flights.json"));
+    private readonly FlightLogService _log = new(AppPaths.FlightLogPath);
+    private readonly FlightSessionStore _store = new(AppPaths.SessionPath);
+    private bool _restored;
     private readonly ObservableCollection<LegRow> _legRows = new();
     private IDispatcherTimer? _clockTimer;
 
@@ -18,9 +19,22 @@ public partial class FlightPage : ContentPage
         RefreshState();
     }
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
+
+        if (!_restored)
+        {
+            _restored = true;
+            var saved = await _store.LoadAsync();
+            if (saved is not null)
+            {
+                _session.Restore(saved);
+                RegistrationEntry.Text = _session.Registration;
+                RefreshState();
+            }
+        }
+
         UpdateClock();
         _clockTimer = Dispatcher.CreateTimer();
         _clockTimer.Interval = TimeSpan.FromSeconds(1);
@@ -48,13 +62,13 @@ public partial class FlightPage : ContentPage
         RefreshState();
     }
 
-    private void OnRegistrationCompleted(object? sender, EventArgs e) => RegistrationEntry.Unfocus();
+    private async void OnRegistrationCompleted(object? sender, EventArgs e) { RegistrationEntry.Unfocus(); await PersistAsync(); }
 
-    private void OnOffBlockClicked(object? sender, EventArgs e) { _session.OffBlock(); RefreshState(); }
-    private void OnStartClicked(object? sender, EventArgs e) { _session.Start(); RefreshState(); }
-    private void OnLandingClicked(object? sender, EventArgs e) { _session.Landing(); RefreshState(); }
-    private void OnOnBlockClicked(object? sender, EventArgs e) { _session.OnBlock(); RefreshState(); }
-    private void OnUndoClicked(object? sender, EventArgs e) { _session.Undo(); RefreshState(); }
+    private async void OnOffBlockClicked(object? sender, EventArgs e) { _session.OffBlock(); RefreshState(); await PersistAsync(); }
+    private async void OnStartClicked(object? sender, EventArgs e) { _session.Start(); RefreshState(); await PersistAsync(); }
+    private async void OnLandingClicked(object? sender, EventArgs e) { _session.Landing(); RefreshState(); await PersistAsync(); }
+    private async void OnOnBlockClicked(object? sender, EventArgs e) { _session.OnBlock(); RefreshState(); await PersistAsync(); }
+    private async void OnUndoClicked(object? sender, EventArgs e) { _session.Undo(); RefreshState(); await PersistAsync(); }
 
     private async void OnSwipeLeft(object? sender, SwipedEventArgs e) => await Shell.Current.GoToAsync("//LogbookPage");
     private async void OnSwipeRight(object? sender, SwipedEventArgs e) => await Shell.Current.GoToAsync("//MainPage");
@@ -64,6 +78,7 @@ public partial class FlightPage : ContentPage
         if (!_session.CanSave) return;
         await _log.AddAsync(_session.Flight);
         _session.Reset();
+        await _store.ClearAsync();
         RegistrationEntry.Text = string.Empty;
         RefreshState();
         await DisplayAlertAsync("Gespeichert", "Flug wurde im Logbuch gespeichert.", "OK");
@@ -75,8 +90,15 @@ public partial class FlightPage : ContentPage
             "Aktuellen Flug verwerfen?", "Ja", "Abbrechen");
         if (!ok) return;
         _session.Reset();
+        await _store.ClearAsync();
         RegistrationEntry.Text = string.Empty;
         RefreshState();
+    }
+
+    private async Task PersistAsync()
+    {
+        try { await _store.SaveAsync(_session.Flight); }
+        catch { /* best-effort: Persistenz darf die UI nicht stören */ }
     }
 
     private void RefreshState()

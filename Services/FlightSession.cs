@@ -78,4 +78,6 @@ public class FlightSession
     }
 
     public void Reset() => Flight = new();
+
+    public void Restore(Flight flight) => Flight = flight ?? new();
 }

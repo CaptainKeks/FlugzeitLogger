@@ -6,8 +6,7 @@ namespace Uhrzeitrechner;
 
 public partial class LogbookPage : ContentPage
 {
-    private readonly FlightLogService _log =
-        new(Path.Combine(FileSystem.AppDataDirectory, "flights.json"));
+    private readonly FlightLogService _log = new(AppPaths.FlightLogPath);
     private readonly ObservableCollection<FlightRow> _rows = new();
 
     public LogbookPage()

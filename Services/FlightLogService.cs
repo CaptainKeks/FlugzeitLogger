@@ -10,6 +10,8 @@ public class FlightLogService
 
     public FlightLogService(string filePath) => _filePath = filePath;
 
+    public string FilePath => _filePath;
+
     public async Task<List<Flight>> LoadAsync()
     {
         if (!File.Exists(_filePath)) return new();
@@ -44,5 +46,25 @@ public class FlightLogService
             all.Remove(match);
             await SaveAllAsync(all);
         }
+    }
+
+    public async Task<int> MergeAsync(IEnumerable<Flight> incoming)
+    {
+        var all = await LoadAsync();
+        int added = 0;
+        foreach (var flight in incoming)
+        {
+            bool exists = all.Any(f =>
+                f.Date == flight.Date &&
+                f.Registration == flight.Registration &&
+                f.OffBlock == flight.OffBlock);
+            if (!exists)
+            {
+                all.Add(flight);
+                added++;
+            }
+        }
+        if (added > 0) await SaveAllAsync(all);
+        return added;
     }
 }

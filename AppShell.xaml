@@ -19,6 +19,10 @@
             Title="Logbuch"
             ContentTemplate="{DataTemplate local:LogbookPage}"
             Route="LogbookPage" />
+        <ShellContent
+            Title="Einstellungen"
+            ContentTemplate="{DataTemplate local:SettingsPage}"
+            Route="SettingsPage" />
     </TabBar>
 
 </Shell>

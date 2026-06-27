@@ -64,4 +64,33 @@ public class FlightLogServiceTests : IDisposable
         Assert.Single(loaded);
         Assert.Equal("D-XYZ", loaded[0].Registration);
     }
+
+    [Fact]
+    public void FilePath_ReturnsConfiguredPath()
+    {
+        var svc = new FlightLogService(_path);
+        Assert.Equal(_path, svc.FilePath);
+    }
+
+    [Fact]
+    public async Task Merge_AddsOnlyNewFlights()
+    {
+        var svc = new FlightLogService(_path);
+        await svc.AddAsync(Sample("D-ABCD"));
+
+        int added = await svc.MergeAsync(new[] { Sample("D-ABCD"), Sample("D-NEW") });
+
+        Assert.Equal(1, added);
+        var loaded = await svc.LoadAsync();
+        Assert.Equal(2, loaded.Count);
+        Assert.Contains(loaded, f => f.Registration == "D-NEW");
+    }
+
+    [Fact]
+    public async Task Merge_IntoEmpty_AddsAll()
+    {
+        var svc = new FlightLogService(_path);
+        int added = await svc.MergeAsync(new[] { Sample("D-ABCD"), Sample("D-XYZ") });
+        Assert.Equal(2, added);
+    }
 }
