@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Uhrzeitrechner.Views.LogbuchView">
+
+    <Grid Padding="20">
+        <CollectionView x:Name="FlightsView" SelectionMode="Single"
+                        SelectionChanged="OnFlightSelected">
+            <CollectionView.EmptyView>
+                <Label Text="Noch keine Flüge gespeichert"
+                       HorizontalOptions="Center" VerticalOptions="Center"
+                       FontSize="18" TextColor="Gray" />
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="*,Auto" Padding="0,10" ColumnSpacing="10">
+                        <VerticalStackLayout Grid.Column="0">
+                            <Label Text="{Binding DateTimeText}" FontAttributes="Bold" FontSize="20" />
+                            <Label Text="{Binding Registration}" FontAttributes="Bold" FontSize="20" TextColor="DodgerBlue" />
+                            <Label Text="{Binding Summary}" FontSize="18" TextColor="Gray" />
+                        </VerticalStackLayout>
+                        <Button Grid.Column="1" Text="✕" FontSize="20"
+                                WidthRequest="48" HeightRequest="48"
+                                BackgroundColor="Transparent" TextColor="Red"
+                                Clicked="OnDeleteClicked"
+                                CommandParameter="{Binding Flight}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentView>
