@@ -122,7 +122,8 @@ public partial class FlugView : ContentView, ITabView
         var lastLanding = _session.Legs.LastOrDefault(l => l.Landing is not null)?.Landing;
         LastLandingLabel.Text = lastLanding?.ToString("HH:mm") ?? "—";
 
-        LandingCountLabel.Text = _session.Legs.Count(l => l.Landing is not null).ToString();
+        int landingCount = _session.Legs.Count(l => l.Landing is not null);
+        LandingCountLabel.Text = landingCount > 0 ? landingCount.ToString() : "—";
 
         BlockTimeLabel.Text = FlightMath.FormatDuration(FlightMath.BlockTime(_session.Flight));
         FlightTimeLabel.Text = FlightMath.FormatDuration(FlightMath.FlightTime(_session.Flight));

@@ -6,6 +6,8 @@ public partial class MainTabsPage : ContentPage
 {
     private const int StartIndex = 1; // Flug
 
+    private static readonly string[] Titles = { "Stundenrechner", "Flugzeit", "Logbuch", "Einstellungen" };
+
     private readonly List<View> _views;
     private readonly ITabView[] _tabs;
     private readonly Button[] _tabButtons;
@@ -80,6 +82,7 @@ public partial class MainTabsPage : ContentPage
 
     private void UpdateHighlight(int index)
     {
+        HeaderLabel.Text = Titles[index];
         for (int i = 0; i < _tabButtons.Length; i++)
         {
             _tabButtons[i].TextColor = i == index ? Colors.DodgerBlue : Colors.Gray;

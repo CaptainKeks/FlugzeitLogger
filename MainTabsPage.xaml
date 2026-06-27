@@ -4,9 +4,14 @@
              x:Class="Uhrzeitrechner.MainTabsPage"
              Shell.NavBarIsVisible="False">
 
-    <Grid RowDefinitions="*,Auto">
+    <Grid RowDefinitions="Auto,*,Auto">
 
-        <CarouselView x:Name="Pager" Grid.Row="0"
+        <Label x:Name="HeaderLabel" Grid.Row="0" Text="Flugzeit"
+               FontSize="20" FontAttributes="Bold" Padding="20,12"
+               TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
+               BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}" />
+
+        <CarouselView x:Name="Pager" Grid.Row="1"
                       Loop="False"
                       IsBounceEnabled="False"
                       HorizontalScrollBarVisibility="Never">
@@ -17,20 +22,24 @@
             </CarouselView.ItemTemplate>
         </CarouselView>
 
-        <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*" HeightRequest="56"
-              BackgroundColor="#F0F0F0">
-            <Button x:Name="TabStunden" Grid.Column="0" Text="Stunden"
-                    FontSize="12" BackgroundColor="Transparent" TextColor="Gray"
-                    Clicked="OnTabStunden" />
-            <Button x:Name="TabFlug" Grid.Column="1" Text="Flug"
-                    FontSize="12" BackgroundColor="Transparent" TextColor="Gray"
-                    Clicked="OnTabFlug" />
-            <Button x:Name="TabLogbuch" Grid.Column="2" Text="Logbuch"
-                    FontSize="12" BackgroundColor="Transparent" TextColor="Gray"
-                    Clicked="OnTabLogbuch" />
-            <Button x:Name="TabEinstellungen" Grid.Column="3" Text="Einstellungen"
-                    FontSize="12" BackgroundColor="Transparent" TextColor="Gray"
-                    Clicked="OnTabEinstellungen" />
+        <Grid Grid.Row="2" RowDefinitions="Auto,Auto"
+              BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}">
+            <BoxView Grid.Row="0" HeightRequest="1"
+                     Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
+            <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*" HeightRequest="56">
+                <Button x:Name="TabStunden" Grid.Column="0" Text="Stunden"
+                        FontSize="12" BackgroundColor="Transparent" TextColor="Gray"
+                        Clicked="OnTabStunden" />
+                <Button x:Name="TabFlug" Grid.Column="1" Text="Flug"
+                        FontSize="12" BackgroundColor="Transparent" TextColor="Gray"
+                        Clicked="OnTabFlug" />
+                <Button x:Name="TabLogbuch" Grid.Column="2" Text="Logbuch"
+                        FontSize="12" BackgroundColor="Transparent" TextColor="Gray"
+                        Clicked="OnTabLogbuch" />
+                <Button x:Name="TabEinstellungen" Grid.Column="3" Text="Einstellungen"
+                        FontSize="12" BackgroundColor="Transparent" TextColor="Gray"
+                        Clicked="OnTabEinstellungen" />
+            </Grid>
         </Grid>
 
     </Grid>
