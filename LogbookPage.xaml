@@ -13,24 +13,18 @@
             <CollectionView.EmptyView>
                 <Label Text="Noch keine Flüge gespeichert"
                        HorizontalOptions="Center" VerticalOptions="Center"
-                       TextColor="Gray" />
+                       FontSize="18" TextColor="Gray" />
             </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid ColumnDefinitions="*,Auto" Padding="0,10" ColumnSpacing="10">
                         <VerticalStackLayout Grid.Column="0">
-                            <Label FontAttributes="Bold" FontSize="16">
-                                <Label.Text>
-                                    <MultiBinding StringFormat="{}{0} · {1}">
-                                        <Binding Path="DateText" />
-                                        <Binding Path="Registration" />
-                                    </MultiBinding>
-                                </Label.Text>
-                            </Label>
-                            <Label Text="{Binding Summary}" FontSize="13" TextColor="Gray" />
+                            <Label Text="{Binding DateTimeText}" FontAttributes="Bold" FontSize="20" />
+                            <Label Text="{Binding Registration}" FontAttributes="Bold" FontSize="20" TextColor="DodgerBlue" />
+                            <Label Text="{Binding Summary}" FontSize="18" TextColor="Gray" />
                         </VerticalStackLayout>
-                        <Button Grid.Column="1" Text="✕" FontSize="14"
-                                WidthRequest="40" HeightRequest="40"
+                        <Button Grid.Column="1" Text="✕" FontSize="20"
+                                WidthRequest="48" HeightRequest="48"
                                 BackgroundColor="Transparent" TextColor="Red"
                                 Clicked="OnDeleteClicked"
                                 CommandParameter="{Binding Flight}" />

@@ -56,6 +56,9 @@ public partial class LogbookPage : ContentPage
     {
         public Flight Flight { get; }
         public string DateText => Flight.Date.ToString("dd.MM.yyyy");
+        public string DateTimeText => Flight.OffBlock is { } off
+            ? off.ToString("dd.MM.yyyy HH:mm")
+            : Flight.Date.ToString("dd.MM.yyyy");
         public string Registration => Flight.Registration;
         public string Summary =>
             $"Block {FlightMath.FormatDuration(FlightMath.BlockTime(Flight))} · " +

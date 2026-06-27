@@ -56,7 +56,8 @@ public class FlightSessionTests
         Assert.Equal(2, s.Legs.Count);
         Assert.True(s.CanSave);
         Assert.Equal(TimeSpan.FromMinutes(90), FlightMath.BlockTime(s.Flight));
-        Assert.Equal(TimeSpan.FromMinutes(50), FlightMath.FlightTime(s.Flight));
+        // Flugzeit = erster Start (10:10) bis letzte Landung (11:20) = 70 min
+        Assert.Equal(TimeSpan.FromMinutes(70), FlightMath.FlightTime(s.Flight));
         Assert.Equal(new DateTime(2026, 6, 27), s.Flight.Date.Date);
     }
 

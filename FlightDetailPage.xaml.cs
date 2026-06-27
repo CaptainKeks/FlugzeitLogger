@@ -31,11 +31,12 @@ public partial class FlightDetailPage : ContentPage, IQueryAttributable
             LegsStack.Children.Add(new Label
             {
                 Text = $"Start {i + 1}: {to}   /   Landung {i + 1}: {la}",
-                FontSize = 16
+                FontSize = 18
             });
         }
 
         BlockTimeLabel.Text = FlightMath.FormatDuration(FlightMath.BlockTime(flight));
         FlightTimeLabel.Text = FlightMath.FormatDuration(FlightMath.FlightTime(flight));
+        LandingCountLabel.Text = flight.Legs.Count(l => l.Landing is not null).ToString();
     }
 }

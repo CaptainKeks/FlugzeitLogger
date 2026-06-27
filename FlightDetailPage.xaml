@@ -6,29 +6,31 @@
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="12">
-            <Label x:Name="HeaderLabel" FontSize="22" FontAttributes="Bold" />
+            <Label x:Name="HeaderLabel" FontSize="24" FontAttributes="Bold" />
 
             <BoxView HeightRequest="1" Color="LightGray" />
 
             <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
-                <Label Grid.Column="0" Text="Off-Block:" TextColor="Gray" />
-                <Label Grid.Column="1" x:Name="OffBlockLabel" FontAttributes="Bold" />
+                <Label Grid.Column="0" Text="Off-Block:" FontSize="18" TextColor="Gray" />
+                <Label Grid.Column="1" x:Name="OffBlockLabel" FontSize="18" FontAttributes="Bold" />
             </Grid>
 
             <VerticalStackLayout x:Name="LegsStack" Spacing="6" />
 
             <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
-                <Label Grid.Column="0" Text="On-Block:" TextColor="Gray" />
-                <Label Grid.Column="1" x:Name="OnBlockLabel" FontAttributes="Bold" />
+                <Label Grid.Column="0" Text="On-Block:" FontSize="18" TextColor="Gray" />
+                <Label Grid.Column="1" x:Name="OnBlockLabel" FontSize="18" FontAttributes="Bold" />
             </Grid>
 
             <BoxView HeightRequest="1" Color="LightGray" />
 
-            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" RowSpacing="6">
-                <Label Grid.Row="0" Grid.Column="0" Text="Blockzeit:" FontSize="18" FontAttributes="Bold" />
-                <Label Grid.Row="0" Grid.Column="1" x:Name="BlockTimeLabel" FontSize="18" FontAttributes="Bold" TextColor="DodgerBlue" />
-                <Label Grid.Row="1" Grid.Column="0" Text="Flugzeit:" FontSize="18" FontAttributes="Bold" />
-                <Label Grid.Row="1" Grid.Column="1" x:Name="FlightTimeLabel" FontSize="18" FontAttributes="Bold" TextColor="DodgerBlue" />
+            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto" RowSpacing="6">
+                <Label Grid.Row="0" Grid.Column="0" Text="Blockzeit:" FontSize="19" FontAttributes="Bold" />
+                <Label Grid.Row="0" Grid.Column="1" x:Name="BlockTimeLabel" FontSize="19" FontAttributes="Bold" TextColor="DodgerBlue" />
+                <Label Grid.Row="1" Grid.Column="0" Text="Flugzeit:" FontSize="19" FontAttributes="Bold" />
+                <Label Grid.Row="1" Grid.Column="1" x:Name="FlightTimeLabel" FontSize="19" FontAttributes="Bold" TextColor="DodgerBlue" />
+                <Label Grid.Row="2" Grid.Column="0" Text="Landungen:" FontSize="19" FontAttributes="Bold" />
+                <Label Grid.Row="2" Grid.Column="1" x:Name="LandingCountLabel" FontSize="19" FontAttributes="Bold" TextColor="DodgerBlue" />
             </Grid>
         </VerticalStackLayout>
     </ScrollView>

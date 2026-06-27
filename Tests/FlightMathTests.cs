@@ -23,13 +23,14 @@ public class FlightMathTests
     }
 
     [Fact]
-    public void FlightTime_SumsCompletedLegsOnly()
+    public void FlightTime_FirstTakeoffToLastLanding()
     {
         var f = new Flight();
-        f.Legs.Add(new Leg { Takeoff = Utc(10, 10), Landing = Utc(10, 40) }); // 30
-        f.Legs.Add(new Leg { Takeoff = Utc(11, 0), Landing = Utc(11, 20) });  // 20
-        f.Legs.Add(new Leg { Takeoff = Utc(12, 0) });                          // offen -> 0
-        Assert.Equal(TimeSpan.FromMinutes(50), FlightMath.FlightTime(f));
+        f.Legs.Add(new Leg { Takeoff = Utc(10, 10), Landing = Utc(10, 40) });
+        f.Legs.Add(new Leg { Takeoff = Utc(11, 0), Landing = Utc(11, 20) });
+        f.Legs.Add(new Leg { Takeoff = Utc(12, 0) }); // offen -> letzte Landung bleibt 11:20
+        // erster Start 10:10 bis letzte Landung 11:20 = 70 min
+        Assert.Equal(TimeSpan.FromMinutes(70), FlightMath.FlightTime(f));
     }
 
     [Fact]

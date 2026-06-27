@@ -16,16 +16,14 @@
 
             <!-- Aktuelle Zeiten -->
             <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
-                <VerticalStackLayout Grid.Column="0">
-                    <Label Text="Lokal" FontSize="12" TextColor="Gray" />
-                    <Label x:Name="LocalTimeLabel" Text="--:--:--"
-                   FontSize="18" FontAttributes="Bold" />
-                </VerticalStackLayout>
-                <VerticalStackLayout Grid.Column="1">
-                    <Label Text="UTC" FontSize="12" TextColor="Gray" />
-                    <Label x:Name="UtcTimeLabel" Text="--:--:--"
-                   FontSize="18" FontAttributes="Bold" />
-                </VerticalStackLayout>
+                <HorizontalStackLayout Grid.Column="0" Spacing="8" VerticalOptions="Center">
+                    <Label Text="UTC" FontSize="18" TextColor="Gray" VerticalOptions="Center" />
+                    <Label x:Name="UtcTimeLabel" Text="--:--:--" FontSize="26" FontAttributes="Bold" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Column="1" Spacing="8" VerticalOptions="Center">
+                    <Label Text="Lokal" FontSize="18" TextColor="Gray" VerticalOptions="Center" />
+                    <Label x:Name="LocalTimeLabel" Text="--:--:--" FontSize="26" FontAttributes="Bold" VerticalOptions="Center" />
+                </HorizontalStackLayout>
             </Grid>
 
             <Label Text="Zeit hinzufügen" FontSize="20" FontAttributes="Bold" />
@@ -33,18 +31,22 @@
                 <Entry x:Name="HoursEntry"
                Grid.Column="0"
                Placeholder="Std"
+               FontSize="20"
                Keyboard="Numeric"
-               MaxLength="3" />
+               MaxLength="5" />
                 <Label Grid.Column="1" Text=":" VerticalOptions="Center" FontSize="20" />
                 <Entry x:Name="MinutesEntry"
                Grid.Column="2"
                Placeholder="Min"
+               FontSize="20"
                Keyboard="Numeric"
-               MaxLength="2" />
+               MaxLength="3" />
                 <Button Grid.Column="3"
                 Text="+"
                 FontSize="20"
-                WidthRequest="50"
+                FontAttributes="Bold"
+                WidthRequest="55"
+                HeightRequest="55"
                 Clicked="OnAddClicked" />
             </Grid>
         </VerticalStackLayout>
@@ -56,16 +58,17 @@
         <CollectionView Grid.Row="2" x:Name="EntriesView">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid ColumnDefinitions="*,Auto" Padding="5,8">
+                    <Grid ColumnDefinitions="*,Auto" Padding="5,2">
                         <Label Grid.Column="0"
                                Text="{Binding Display}"
-                               FontSize="18"
+                               FontSize="20"
                                VerticalOptions="Center" />
                         <Button Grid.Column="1"
                                 Text="✕"
-                                FontSize="14"
+                                FontSize="20"
                                 WidthRequest="40"
                                 HeightRequest="40"
+                                Padding="0"
                                 BackgroundColor="Transparent"
                                 TextColor="Red"
                                 Clicked="OnRemoveClicked"
@@ -83,7 +86,7 @@
                 <Label Grid.Column="1" x:Name="TotalLabel" Text="0:00"
                        FontSize="22" FontAttributes="Bold" TextColor="DodgerBlue" />
             </Grid>
-            <Button Text="Alles löschen" Clicked="OnClearClicked" />
+            <Button Text="Alles löschen" FontSize="20" Clicked="OnClearClicked" />
         </VerticalStackLayout>
 
     </Grid>

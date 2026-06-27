@@ -54,37 +54,37 @@
                 <!-- Zeile 1: Off-Block | Erster Start -->
                 <Grid Grid.Row="0" Grid.Column="0" ColumnDefinitions="Auto,*" ColumnSpacing="6">
                     <Label Grid.Column="0" Text="Off-Block" FontSize="20" TextColor="Gray" VerticalOptions="Center" />
-                    <Label Grid.Column="1" x:Name="OffBlockResultLabel" Text="—" FontSize="20" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
+                    <Label Grid.Column="1" x:Name="OffBlockResultLabel" Text="—" FontSize="24" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
                 </Grid>
                 <Grid Grid.Row="0" Grid.Column="1" ColumnDefinitions="Auto,*" ColumnSpacing="6">
                     <Label Grid.Column="0" Text="Erster Start" FontSize="20" TextColor="Gray" VerticalOptions="Center" />
-                    <Label Grid.Column="1" x:Name="FirstTakeoffLabel" Text="—" FontSize="20" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
+                    <Label Grid.Column="1" x:Name="FirstTakeoffLabel" Text="—" FontSize="24" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
                 </Grid>
 
                 <!-- Zeile 2: On-Block | Letzte Landung -->
                 <Grid Grid.Row="1" Grid.Column="0" ColumnDefinitions="Auto,*" ColumnSpacing="6">
                     <Label Grid.Column="0" Text="On-Block" FontSize="20" TextColor="Gray" VerticalOptions="Center" />
-                    <Label Grid.Column="1" x:Name="OnBlockResultLabel" Text="—" FontSize="20" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
+                    <Label Grid.Column="1" x:Name="OnBlockResultLabel" Text="—" FontSize="24" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="1" ColumnDefinitions="Auto,*" ColumnSpacing="6">
                     <Label Grid.Column="0" Text="Letzte Ldg." FontSize="20" TextColor="Gray" VerticalOptions="Center" />
-                    <Label Grid.Column="1" x:Name="LastLandingLabel" Text="—" FontSize="20" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
+                    <Label Grid.Column="1" x:Name="LastLandingLabel" Text="—" FontSize="24" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
                 </Grid>
 
                 <!-- Zeile 3: Blockzeit | Flugzeit -->
                 <Grid Grid.Row="2" Grid.Column="0" ColumnDefinitions="Auto,*" ColumnSpacing="6">
                     <Label Grid.Column="0" Text="Blockzeit" FontSize="20" TextColor="Gray" VerticalOptions="Center" />
-                    <Label Grid.Column="1" x:Name="BlockTimeLabel" Text="—" FontSize="20" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
+                    <Label Grid.Column="1" x:Name="BlockTimeLabel" Text="—" FontSize="24" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
                 </Grid>
                 <Grid Grid.Row="2" Grid.Column="1" ColumnDefinitions="Auto,*" ColumnSpacing="6">
                     <Label Grid.Column="0" Text="Flugzeit" FontSize="20" TextColor="Gray" VerticalOptions="Center" />
-                    <Label Grid.Column="1" x:Name="FlightTimeLabel" Text="0:00" FontSize="20" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
+                    <Label Grid.Column="1" x:Name="FlightTimeLabel" Text="0:00" FontSize="24" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
                 </Grid>
 
                 <!-- Zeile 4: Anzahl Landungen -->
                 <Grid Grid.Row="3" Grid.Column="0" ColumnDefinitions="Auto,*" ColumnSpacing="6">
                     <Label Grid.Column="0" Text="Landungen" FontSize="20" TextColor="Gray" VerticalOptions="Center" />
-                    <Label Grid.Column="1" x:Name="LandingCountLabel" Text="0" FontSize="20" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
+                    <Label Grid.Column="1" x:Name="LandingCountLabel" Text="0" FontSize="24" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
                 </Grid>
 
             </Grid>
