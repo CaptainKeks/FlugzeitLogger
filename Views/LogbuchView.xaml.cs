@@ -2,24 +2,22 @@ using System.Collections.ObjectModel;
 using Uhrzeitrechner.Models;
 using Uhrzeitrechner.Services;
 
-namespace Uhrzeitrechner;
+namespace Uhrzeitrechner.Views;
 
-public partial class LogbookPage : ContentPage
+public partial class LogbuchView : ContentView, ITabView
 {
     private readonly FlightLogService _log = new(AppPaths.FlightLogPath);
     private readonly ObservableCollection<FlightRow> _rows = new();
 
-    public LogbookPage()
+    public LogbuchView()
     {
         InitializeComponent();
         FlightsView.ItemsSource = _rows;
     }
 
-    protected override async void OnAppearing()
-    {
-        base.OnAppearing();
-        await ReloadAsync();
-    }
+    public async void OnSelected() => await ReloadAsync();
+
+    public void OnDeselected() { }
 
     private async Task ReloadAsync()
     {
@@ -39,12 +37,10 @@ public partial class LogbookPage : ContentPage
             new Dictionary<string, object> { ["flight"] = row.Flight });
     }
 
-    private async void OnSwipeRight(object? sender, SwipedEventArgs e) => await Shell.Current.GoToAsync("//FlightPage");
-
     private async void OnDeleteClicked(object? sender, EventArgs e)
     {
         if (sender is not Button { CommandParameter: Flight flight }) return;
-        bool ok = await DisplayAlertAsync("Löschen",
+        bool ok = await Shell.Current.DisplayAlertAsync("Löschen",
             $"Flug {flight.Registration} löschen?", "Ja", "Abbrechen");
         if (!ok) return;
         await _log.DeleteAsync(flight);

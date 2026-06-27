@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Uhrzeitrechner.FlightPage"
-             Title="Flugzeit">
+             x:Class="Uhrzeitrechner.Views.FlugView">
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
-
-            <VerticalStackLayout.GestureRecognizers>
-                <SwipeGestureRecognizer Direction="Left" Swiped="OnSwipeLeft" />
-                <SwipeGestureRecognizer Direction="Right" Swiped="OnSwipeRight" />
-            </VerticalStackLayout.GestureRecognizers>
 
             <!-- Uhr -->
             <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
@@ -51,7 +45,6 @@
             <!-- Ergebnisse -->
             <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="10" ColumnSpacing="10">
 
-                <!-- Zeile 1: Off-Block | Erster Start -->
                 <Grid Grid.Row="0" Grid.Column="0" ColumnDefinitions="Auto,*" ColumnSpacing="6">
                     <Label Grid.Column="0" Text="Off-Block" FontSize="Small" TextColor="Gray" VerticalOptions="Center" />
                     <Label Grid.Column="1" x:Name="OffBlockResultLabel" Text="—" FontSize="Medium" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
@@ -61,7 +54,6 @@
                     <Label Grid.Column="1" x:Name="FirstTakeoffLabel" Text="—" FontSize="Medium" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
                 </Grid>
 
-                <!-- Zeile 2: On-Block | Letzte Landung -->
                 <Grid Grid.Row="1" Grid.Column="0" ColumnDefinitions="Auto,*" ColumnSpacing="6">
                     <Label Grid.Column="0" Text="On-Block" FontSize="Small" TextColor="Gray" VerticalOptions="Center" />
                     <Label Grid.Column="1" x:Name="OnBlockResultLabel" Text="—" FontSize="Medium" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
@@ -71,7 +63,6 @@
                     <Label Grid.Column="1" x:Name="LastLandingLabel" Text="—" FontSize="Medium" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
                 </Grid>
 
-                <!-- Zeile 3: Blockzeit | Flugzeit -->
                 <Grid Grid.Row="2" Grid.Column="0" ColumnDefinitions="Auto,*" ColumnSpacing="6">
                     <Label Grid.Column="0" Text="Blockzeit" FontSize="Small" TextColor="Gray" VerticalOptions="Center" />
                     <Label Grid.Column="1" x:Name="BlockTimeLabel" Text="—" FontSize="Medium" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
@@ -81,7 +72,6 @@
                     <Label Grid.Column="1" x:Name="FlightTimeLabel" Text="0:00" FontSize="Medium" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
                 </Grid>
 
-                <!-- Zeile 4: Anzahl Landungen -->
                 <Grid Grid.Row="3" Grid.Column="0" ColumnDefinitions="Auto,*" ColumnSpacing="6">
                     <Label Grid.Column="0" Text="Landungen" FontSize="Small" TextColor="Gray" VerticalOptions="Center" />
                     <Label Grid.Column="1" x:Name="LandingCountLabel" Text="0" FontSize="Medium" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
@@ -111,4 +101,4 @@
 
         </VerticalStackLayout>
     </ScrollView>
-</ContentPage>
+</ContentView>

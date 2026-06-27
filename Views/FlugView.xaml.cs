@@ -1,9 +1,9 @@
 using System.Collections.ObjectModel;
 using Uhrzeitrechner.Services;
 
-namespace Uhrzeitrechner;
+namespace Uhrzeitrechner.Views;
 
-public partial class FlightPage : ContentPage
+public partial class FlugView : ContentView, ITabView
 {
     private readonly FlightSession _session = new();
     private readonly FlightLogService _log = new(AppPaths.FlightLogPath);
@@ -12,16 +12,16 @@ public partial class FlightPage : ContentPage
     private readonly ObservableCollection<LegRow> _legRows = new();
     private IDispatcherTimer? _clockTimer;
 
-    public FlightPage()
+    public FlugView()
     {
         InitializeComponent();
         LegsView.ItemsSource = _legRows;
         RefreshState();
     }
 
-    protected override async void OnAppearing()
+    public async void OnSelected()
     {
-        base.OnAppearing();
+        _clockTimer?.Stop(); // guard against ghost timer on double-select
 
         if (!_restored)
         {
@@ -42,10 +42,11 @@ public partial class FlightPage : ContentPage
         _clockTimer.Start();
     }
 
-    protected override void OnDisappearing()
+    public void OnDeselected()
     {
-        base.OnDisappearing();
         _clockTimer?.Stop();
+        _clockTimer = null;
+        _ = PersistAsync();
     }
 
     private void UpdateClock()
@@ -70,9 +71,6 @@ public partial class FlightPage : ContentPage
     private async void OnOnBlockClicked(object? sender, EventArgs e) { _session.OnBlock(); RefreshState(); await PersistAsync(); }
     private async void OnUndoClicked(object? sender, EventArgs e) { _session.Undo(); RefreshState(); await PersistAsync(); }
 
-    private async void OnSwipeLeft(object? sender, SwipedEventArgs e) => await Shell.Current.GoToAsync("//LogbookPage");
-    private async void OnSwipeRight(object? sender, SwipedEventArgs e) => await Shell.Current.GoToAsync("//MainPage");
-
     private async void OnSaveClicked(object? sender, EventArgs e)
     {
         if (!_session.CanSave) return;
@@ -81,12 +79,12 @@ public partial class FlightPage : ContentPage
         await _store.ClearAsync();
         RegistrationEntry.Text = string.Empty;
         RefreshState();
-        await DisplayAlertAsync("Gespeichert", "Flug wurde im Logbuch gespeichert.", "OK");
+        await Shell.Current.DisplayAlertAsync("Gespeichert", "Flug wurde im Logbuch gespeichert.", "OK");
     }
 
     private async void OnResetClicked(object? sender, EventArgs e)
     {
-        bool ok = await DisplayAlertAsync("Zurücksetzen",
+        bool ok = await Shell.Current.DisplayAlertAsync("Zurücksetzen",
             "Aktuellen Flug verwerfen?", "Ja", "Abbrechen");
         if (!ok) return;
         _session.Reset();
@@ -114,7 +112,6 @@ public partial class FlightPage : ContentPage
         for (int i = 0; i < _session.Legs.Count; i++)
             _legRows.Add(new LegRow(i + 1, _session.Legs[i]));
 
-        // Ergebnisse (ohne Sekunden)
         OffBlockResultLabel.Text = _session.Flight.OffBlock?.ToString("HH:mm") ?? "—";
         OnBlockResultLabel.Text = _session.Flight.OnBlock?.ToString("HH:mm") ?? "—";
 

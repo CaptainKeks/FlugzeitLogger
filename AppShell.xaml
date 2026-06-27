@@ -6,23 +6,8 @@
     xmlns:local="clr-namespace:Uhrzeitrechner"
     Title="Flugzeit Logger">
 
-    <TabBar>
-        <ShellContent
-            Title="Stunden"
-            ContentTemplate="{DataTemplate local:MainPage}"
-            Route="MainPage" />
-        <ShellContent
-            Title="Flug"
-            ContentTemplate="{DataTemplate local:FlightPage}"
-            Route="FlightPage" />
-        <ShellContent
-            Title="Logbuch"
-            ContentTemplate="{DataTemplate local:LogbookPage}"
-            Route="LogbookPage" />
-        <ShellContent
-            Title="Einstellungen"
-            ContentTemplate="{DataTemplate local:SettingsPage}"
-            Route="SettingsPage" />
-    </TabBar>
+    <ShellContent
+        ContentTemplate="{DataTemplate local:MainTabsPage}"
+        Route="MainTabsPage" />
 
 </Shell>

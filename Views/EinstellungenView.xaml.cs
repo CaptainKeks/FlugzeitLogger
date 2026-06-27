@@ -2,30 +2,31 @@ using System.Text.Json;
 using Uhrzeitrechner.Models;
 using Uhrzeitrechner.Services;
 
-namespace Uhrzeitrechner;
+namespace Uhrzeitrechner.Views;
 
-public partial class SettingsPage : ContentPage
+public partial class EinstellungenView : ContentView, ITabView
 {
     private readonly FlightLogService _log = new(AppPaths.FlightLogPath);
 
-    public SettingsPage()
+    public EinstellungenView()
     {
         InitializeComponent();
     }
 
-    protected override async void OnAppearing()
+    public async void OnSelected()
     {
-        base.OnAppearing();
         PathLabel.Text = _log.FilePath;
         var flights = await _log.LoadAsync();
         CountLabel.Text = $"{flights.Count} Flüge im Logbuch";
     }
 
+    public void OnDeselected() { }
+
     private async void OnExportClicked(object? sender, EventArgs e)
     {
         if (!File.Exists(_log.FilePath))
         {
-            await DisplayAlertAsync("Export", "Es sind noch keine Flüge gespeichert.", "OK");
+            await Shell.Current.DisplayAlertAsync("Export", "Es sind noch keine Flüge gespeichert.", "OK");
             return;
         }
         try
@@ -38,7 +39,7 @@ public partial class SettingsPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlertAsync("Fehler", $"Export fehlgeschlagen: {ex.Message}", "OK");
+            await Shell.Current.DisplayAlertAsync("Fehler", $"Export fehlgeschlagen: {ex.Message}", "OK");
         }
     }
 
@@ -56,13 +57,13 @@ public partial class SettingsPage : ContentPage
             var incoming = await JsonSerializer.DeserializeAsync<List<Flight>>(stream);
             if (incoming is null)
             {
-                await DisplayAlertAsync("Import", "Datei enthält keine Flüge.", "OK");
+                await Shell.Current.DisplayAlertAsync("Import", "Datei enthält keine Flüge.", "OK");
                 return;
             }
 
             int added = await _log.MergeAsync(incoming);
             int skipped = incoming.Count - added;
-            await DisplayAlertAsync("Import",
+            await Shell.Current.DisplayAlertAsync("Import",
                 $"{added} Flüge importiert, {skipped} übersprungen.", "OK");
 
             var flights = await _log.LoadAsync();
@@ -70,11 +71,11 @@ public partial class SettingsPage : ContentPage
         }
         catch (JsonException)
         {
-            await DisplayAlertAsync("Fehler", "Die Datei ist keine gültige Logbuch-Datei.", "OK");
+            await Shell.Current.DisplayAlertAsync("Fehler", "Die Datei ist keine gültige Logbuch-Datei.", "OK");
         }
         catch (Exception ex)
         {
-            await DisplayAlertAsync("Fehler", $"Import fehlgeschlagen: {ex.Message}", "OK");
+            await Shell.Current.DisplayAlertAsync("Fehler", $"Import fehlgeschlagen: {ex.Message}", "OK");
         }
     }
 }
