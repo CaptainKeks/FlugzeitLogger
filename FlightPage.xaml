@@ -9,9 +9,9 @@
 
             <!-- Uhr -->
             <VerticalStackLayout>
-                <Label Text="UTC" FontSize="12" TextColor="Gray" />
+                <Label Text="UTC" FontSize="16" TextColor="Gray" />
                 <Label x:Name="UtcTimeLabel" Text="--:--:--" FontSize="28" FontAttributes="Bold" />
-                <Label x:Name="LocalTimeLabel" Text="Lokal --:--:--" FontSize="12" TextColor="Gray" />
+                <Label x:Name="LocalTimeLabel" Text="Lokal --:--:--" FontSize="16" />
             </VerticalStackLayout>
 
             <BoxView HeightRequest="1" Color="LightGray" />
@@ -21,7 +21,7 @@
                 <Label Grid.Row="0" Grid.Column="0" Text="Datum:" VerticalOptions="Center" TextColor="Gray" />
                 <Label Grid.Row="0" Grid.Column="1" x:Name="DateLabel" Text="—" VerticalOptions="Center" FontAttributes="Bold" />
                 <Label Grid.Row="1" Grid.Column="0" Text="Kennzeichen:" VerticalOptions="Center" TextColor="Gray" />
-                <Entry Grid.Row="1" Grid.Column="1" x:Name="RegistrationEntry" Placeholder="z.B. D-ABCD" TextChanged="OnRegistrationChanged" />
+                <Entry Grid.Row="1" Grid.Column="1" x:Name="RegistrationEntry" Placeholder="z.B. D-MSSE" TextChanged="OnRegistrationChanged" />
             </Grid>
 
             <!-- Erfassungs-Buttons -->
