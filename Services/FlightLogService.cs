@@ -55,6 +55,20 @@ public class FlightLogService
         }
     }
 
+    public async Task<bool> UpdateRegistrationAsync(Flight flight, string newRegistration)
+    {
+        var all = await LoadAsync();
+        // Match by composite key (Date + Registration + OffBlock) using the flight's current values.
+        var match = all.FirstOrDefault(f =>
+            f.Date == flight.Date &&
+            f.Registration == flight.Registration &&
+            f.OffBlock == flight.OffBlock);
+        if (match is null) return false;
+        match.Registration = newRegistration;
+        await SaveAllAsync(all);
+        return true;
+    }
+
     public async Task<int> MergeAsync(IEnumerable<Flight> incoming)
     {
         var all = await LoadAsync();

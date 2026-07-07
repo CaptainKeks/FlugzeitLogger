@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Uhrzeitrechner.Views.StundenView">
 
-    <Grid RowDefinitions="Auto,Auto,*,Auto" Padding="20" RowSpacing="15">
+    <Grid RowDefinitions="Auto,Auto,*,Auto" Padding="10" RowSpacing="15">
 
         <!-- Eingabe -->
         <VerticalStackLayout Grid.Row="0" Spacing="20">

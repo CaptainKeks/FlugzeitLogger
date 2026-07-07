@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Uhrzeitrechner.Views.LogbuchView">
 
-    <Grid Padding="20">
+    <Grid Padding="10">
         <CollectionView x:Name="FlightsView" SelectionMode="Single"
                         SelectionChanged="OnFlightSelected">
             <CollectionView.EmptyView>
@@ -15,11 +15,11 @@
                 <DataTemplate>
                     <Grid ColumnDefinitions="*,Auto" Padding="0,10" ColumnSpacing="10">
                         <VerticalStackLayout Grid.Column="0">
-                            <Label Text="{Binding DateTimeText}" FontAttributes="Bold" FontSize="20" />
-                            <Label Text="{Binding Registration}" FontAttributes="Bold" FontSize="20" TextColor="DodgerBlue" />
-                            <Label Text="{Binding Summary}" FontSize="18" TextColor="Gray" />
+                            <Label Text="{Binding DateTimeText}" FontSize="Medium" />
+                            <Label Text="{Binding Registration}" FontAttributes="Bold" FontSize="Medium" TextColor="DodgerBlue" />
+                            <Label Text="{Binding Summary}" FontSize="Medium" TextColor="Gray" />
                         </VerticalStackLayout>
-                        <Button Grid.Column="1" Text="✕" FontSize="20"
+                        <Button Grid.Column="1" Text="✕" FontSize="Medium"
                                 WidthRequest="48" HeightRequest="48"
                                 BackgroundColor="Transparent" TextColor="Red"
                                 Clicked="OnDeleteClicked"

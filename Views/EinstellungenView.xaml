@@ -4,7 +4,7 @@
              x:Class="Uhrzeitrechner.Views.EinstellungenView">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
+        <VerticalStackLayout Padding="10" Spacing="15">
 
             <Label Text="Logbuch" FontSize="Large" FontAttributes="Bold" />
 

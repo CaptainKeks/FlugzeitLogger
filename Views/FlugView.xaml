@@ -4,7 +4,7 @@
              x:Class="Uhrzeitrechner.Views.FlugView">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
+        <VerticalStackLayout Padding="10" Spacing="15">
 
             <!-- Uhr -->
             <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
@@ -33,7 +33,10 @@
                 <Button Grid.Row="0" Grid.Column="0" x:Name="OffBlockButton" Text="Off-Block" Clicked="OnOffBlockClicked" FontAttributes="Bold" FontSize="Medium" HeightRequest="55" />
                 <Button Grid.Row="1" Grid.Column="0" x:Name="OnBlockButton" Text="On-Block" Clicked="OnOnBlockClicked" FontAttributes="Bold" FontSize="Medium" HeightRequest="55" />
                 <Button Grid.Row="0" Grid.Column="1" x:Name="StartButton" Text="Start" Clicked="OnStartClicked" FontAttributes="Bold" FontSize="Medium" HeightRequest="55" />
-                <Button Grid.Row="1" Grid.Column="1" x:Name="LandingButton" Text="Landung" Clicked="OnLandingClicked" FontAttributes="Bold" FontSize="Medium" HeightRequest="55" />
+                <Grid Grid.Row="1" Grid.Column="1" ColumnDefinitions="*,*" ColumnSpacing="5">
+                    <Button Grid.Column="0" x:Name="LandingButton" Text="Landung" Clicked="OnLandingClicked" FontAttributes="Bold" FontSize="Small" HeightRequest="55" />
+                    <Button Grid.Column="1" x:Name="GoAroundButton" Text="GoAround" Clicked="OnGoAroundClicked" FontAttributes="Bold" FontSize="Small" HeightRequest="55" />
+                </Grid>
             </Grid>
 
             <Button x:Name="UndoButton" Text="Letzte Erfassung rückgängig" Clicked="OnUndoClicked"
@@ -75,6 +78,10 @@
                 <Grid Grid.Row="3" Grid.Column="0" ColumnDefinitions="Auto,*" ColumnSpacing="6">
                     <Label Grid.Column="0" Text="Landungen" FontSize="Small" TextColor="Gray" VerticalOptions="Center" />
                     <Label Grid.Column="1" x:Name="LandingCountLabel" Text="—" FontSize="Medium" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="1" ColumnDefinitions="Auto,*" ColumnSpacing="6">
+                    <Label Grid.Column="0" Text="Go Arounds" FontSize="Small" TextColor="Gray" VerticalOptions="Center" />
+                    <Label Grid.Column="1" x:Name="GoAroundCountLabel" Text="—" FontSize="Medium" FontAttributes="Bold" TextColor="DodgerBlue" VerticalOptions="Center" HorizontalTextAlignment="End" />
                 </Grid>
 
             </Grid>

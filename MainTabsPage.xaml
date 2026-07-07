@@ -7,7 +7,7 @@
     <Grid RowDefinitions="Auto,*,Auto">
 
         <Label x:Name="HeaderLabel" Grid.Row="0" Text="Flugzeit"
-               FontSize="20" FontAttributes="Bold" Padding="20,12"
+               FontSize="20" FontAttributes="Bold" Padding="10"
                TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}" />
 

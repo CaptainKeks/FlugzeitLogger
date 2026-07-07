@@ -5,38 +5,48 @@
              Title="Flugdetails">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="12">
-            <Label x:Name="HeaderLabel" FontSize="Medium" FontAttributes="Bold" />
+        <VerticalStackLayout Padding="10" Spacing="12">
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                <Label Grid.Column="0" x:Name="HeaderLabel" FontSize="Large"
+                       FontAttributes="Bold" VerticalOptions="Center" />
+                <Button Grid.Column="1" Text="✏️" FontSize="Medium"
+                        WidthRequest="48" HeightRequest="48"
+                        BackgroundColor="Transparent"
+                        VerticalOptions="Center"
+                        Clicked="OnEditRegistrationClicked" />
+            </Grid>
 
             <BoxView HeightRequest="1" Color="LightGray" />
 
             <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
-                <Label Grid.Column="0" Text="Off-Block:" FontSize="Small" TextColor="Gray" />
-                <Label Grid.Column="1" x:Name="OffBlockLabel" FontSize="Small" FontAttributes="Bold" />
+                <Label Grid.Column="0" Text="Off-Block:" FontSize="Medium" TextColor="Gray" />
+                <Label Grid.Column="1" x:Name="OffBlockLabel" FontSize="Medium" FontAttributes="Bold" />
             </Grid>
 
             <VerticalStackLayout x:Name="LegsStack" Spacing="6">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <Label Text="{Binding}" FontSize="Small" />
+                        <Label Text="{Binding}" FontSize="Medium" />
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
             </VerticalStackLayout>
 
             <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
-                <Label Grid.Column="0" Text="On-Block:" FontSize="Small" TextColor="Gray" />
-                <Label Grid.Column="1" x:Name="OnBlockLabel" FontSize="Small" FontAttributes="Bold" />
+                <Label Grid.Column="0" Text="On-Block:" FontSize="Medium" TextColor="Gray" />
+                <Label Grid.Column="1" x:Name="OnBlockLabel" FontSize="Medium" FontAttributes="Bold" />
             </Grid>
 
             <BoxView HeightRequest="1" Color="LightGray" />
 
-            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto" RowSpacing="6">
-                <Label Grid.Row="0" Grid.Column="0" Text="Blockzeit:" FontSize="Small" FontAttributes="Bold" />
-                <Label Grid.Row="0" Grid.Column="1" x:Name="BlockTimeLabel" FontSize="Small" FontAttributes="Bold" TextColor="DodgerBlue" />
-                <Label Grid.Row="1" Grid.Column="0" Text="Flugzeit:" FontSize="Small" FontAttributes="Bold" />
-                <Label Grid.Row="1" Grid.Column="1" x:Name="FlightTimeLabel" FontSize="Small" FontAttributes="Bold" TextColor="DodgerBlue" />
-                <Label Grid.Row="2" Grid.Column="0" Text="Landungen:" FontSize="Small" FontAttributes="Bold" />
-                <Label Grid.Row="2" Grid.Column="1" x:Name="LandingCountLabel" FontSize="Small" FontAttributes="Bold" TextColor="DodgerBlue" />
+            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="6">
+                <Label Grid.Row="0" Grid.Column="0" Text="Blockzeit:" FontSize="Medium" FontAttributes="Bold" />
+                <Label Grid.Row="0" Grid.Column="1" x:Name="BlockTimeLabel" FontSize="Medium" FontAttributes="Bold" TextColor="DodgerBlue" />
+                <Label Grid.Row="1" Grid.Column="0" Text="Flugzeit:" FontSize="Medium" FontAttributes="Bold" />
+                <Label Grid.Row="1" Grid.Column="1" x:Name="FlightTimeLabel" FontSize="Medium" FontAttributes="Bold" TextColor="DodgerBlue" />
+                <Label Grid.Row="2" Grid.Column="0" Text="Landungen:" FontSize="Medium" FontAttributes="Bold" />
+                <Label Grid.Row="2" Grid.Column="1" x:Name="LandingCountLabel" FontSize="Medium" FontAttributes="Bold" TextColor="DodgerBlue" />
+                <Label Grid.Row="3" Grid.Column="0" Text="Go-Arounds:" FontSize="Medium" FontAttributes="Bold" />
+                <Label Grid.Row="3" Grid.Column="1" x:Name="GoAroundCountLabel" FontSize="Medium" FontAttributes="Bold" TextColor="DodgerBlue" />
             </Grid>
         </VerticalStackLayout>
     </ScrollView>

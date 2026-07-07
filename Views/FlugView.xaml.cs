@@ -68,6 +68,7 @@ public partial class FlugView : ContentView, ITabView
     private async void OnOffBlockClicked(object? sender, EventArgs e) { _session.OffBlock(); RefreshState(); await PersistAsync(); }
     private async void OnStartClicked(object? sender, EventArgs e) { _session.Start(); RefreshState(); await PersistAsync(); }
     private async void OnLandingClicked(object? sender, EventArgs e) { _session.Landing(); RefreshState(); await PersistAsync(); }
+    private async void OnGoAroundClicked(object? sender, EventArgs e) { _session.GoAround(); RefreshState(); await PersistAsync(); }
     private async void OnOnBlockClicked(object? sender, EventArgs e) { _session.OnBlock(); RefreshState(); await PersistAsync(); }
     private async void OnUndoClicked(object? sender, EventArgs e) { _session.Undo(); RefreshState(); await PersistAsync(); }
 
@@ -104,6 +105,7 @@ public partial class FlugView : ContentView, ITabView
         OffBlockButton.IsEnabled = _session.CanOffBlock;
         StartButton.IsEnabled = _session.CanStart;
         LandingButton.IsEnabled = _session.CanLanding;
+        GoAroundButton.IsEnabled = _session.CanGoAround;
         OnBlockButton.IsEnabled = _session.CanOnBlock;
         UndoButton.IsEnabled = _session.CanUndo;
         SaveButton.IsEnabled = _session.CanSave;
@@ -122,8 +124,8 @@ public partial class FlugView : ContentView, ITabView
         var lastLanding = _session.Legs.LastOrDefault(l => l.Landing is not null)?.Landing;
         LastLandingLabel.Text = lastLanding?.ToString("HH:mm") ?? "—";
 
-        int landingCount = _session.Legs.Count(l => l.Landing is not null);
-        LandingCountLabel.Text = landingCount > 0 ? landingCount.ToString() : "—";
+        LandingCountLabel.Text = _session.LandingCount > 0 ? _session.LandingCount.ToString() : "—";
+        GoAroundCountLabel.Text = _session.GoAroundCount > 0 ? _session.GoAroundCount.ToString() : "—";
 
         BlockTimeLabel.Text = FlightMath.FormatDuration(FlightMath.BlockTime(_session.Flight));
         FlightTimeLabel.Text = FlightMath.FormatDuration(FlightMath.FlightTime(_session.Flight));
@@ -136,7 +138,8 @@ public partial class FlugView : ContentView, ITabView
         {
             string to = leg.Takeoff?.ToString("HH:mm:ss") ?? "—";
             string la = leg.Landing?.ToString("HH:mm:ss") ?? "—";
-            Display = $"Start {index}: {to}   /   Landung {index}: {la}";
+            string endLabel = leg.GoAround ? "Go-Around" : "Landung";
+            Display = $"Start {index}: {to}   /   {endLabel} {index}: {la}";
         }
     }
 }
