@@ -26,7 +26,7 @@
             <VerticalStackLayout x:Name="LegsStack" Spacing="6">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <Label Text="{Binding}" FontSize="Medium" />
+                        <Label Text="{Binding}" FontSize="Small" />
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
             </VerticalStackLayout>
