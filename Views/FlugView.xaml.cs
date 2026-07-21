@@ -136,8 +136,8 @@ public partial class FlugView : ContentView, ITabView
         public string Display { get; }
         public LegRow(int index, Models.Leg leg)
         {
-            string to = leg.Takeoff?.ToString("HH:mm:ss") ?? "—";
-            string la = leg.Landing?.ToString("HH:mm:ss") ?? "—";
+            string to = leg.Takeoff?.ToString("HH:mm") ?? "—";
+            string la = leg.Landing?.ToString("HH:mm") ?? "—";
             string endLabel = leg.GoAround ? "Go-Around" : "Landung";
             Display = $"Start {index}: {to}   /   {endLabel} {index}: {la}";
         }

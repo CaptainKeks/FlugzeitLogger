@@ -21,6 +21,8 @@ public static class FlightMath
     public static string FormatDuration(TimeSpan? t)
     {
         if (t is not { } v) return "—";
-        return $"{(int)v.TotalHours}:{v.Minutes:D2}";
+        // Sekunden auf ganze Minuten runden (kaufmännisch), damit keine Sekunden entstehen/angezeigt werden.
+        long totalMinutes = (long)Math.Round(v.TotalMinutes, MidpointRounding.AwayFromZero);
+        return $"{totalMinutes / 60}:{totalMinutes % 60:D2}";
     }
 }

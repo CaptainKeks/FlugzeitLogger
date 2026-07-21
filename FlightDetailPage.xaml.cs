@@ -59,15 +59,15 @@ public partial class FlightDetailPage : ContentPage, IQueryAttributable
                 new Span { Text = flight.Registration, TextColor = Colors.DodgerBlue, FontAttributes = FontAttributes.Bold },
             }
         };
-        OffBlockLabel.Text = flight.OffBlock is { } off ? off.ToString("HH:mm:ss") + " UTC" : "—";
-        OnBlockLabel.Text = flight.OnBlock is { } on ? on.ToString("HH:mm:ss") + " UTC" : "—";
+        OffBlockLabel.Text = flight.OffBlock is { } off ? off.ToString("HH:mm") + " UTC" : "—";
+        OnBlockLabel.Text = flight.OnBlock is { } on ? on.ToString("HH:mm") + " UTC" : "—";
 
         var legLines = new List<string>();
         for (int i = 0; i < flight.Legs.Count; i++)
         {
             var leg = flight.Legs[i];
-            string to = leg.Takeoff?.ToString("HH:mm:ss") ?? "—";
-            string la = leg.Landing?.ToString("HH:mm:ss") ?? "—";
+            string to = leg.Takeoff?.ToString("HH:mm") ?? "—";
+            string la = leg.Landing?.ToString("HH:mm") ?? "—";
             string endLabel = leg.GoAround ? "Go-Around" : "Landung";
             legLines.Add($"Start {i + 1}: {to}   /   {endLabel} {i + 1}: {la}");
         }
